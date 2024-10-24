@@ -57,6 +57,8 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": { 
+    "port": 80, "host": "0.0.0.0", "disableHostCheck": true, "proxyConfig": "src/proxy.conf.json" }, 
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
@@ -94,5 +96,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f301c6c8-0820-417b-92d4-6abf31926ffa"
   }
 }
