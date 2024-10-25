@@ -1,0 +1,24 @@
+<div *ngIf="apartResidents">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Personal Code</th>
+            <th>Apartment ID</th>
+            <th>Owner?</th>
+            <th>Date Of Birth</th>
+        </tr>
+        <tr *ngFor="let resident of apartResidents">
+            <td>{{resident.vards}}</td>
+            <td>{{resident.uzvards}}</td>
+            <td>{{resident.persKods}}</td>
+            <td>{{resident.dzivNumurs}}</td>
+            <td>{{resident.isOwner}}</td>
+            <td>{{resident.dzimDat}}</td>
+        </tr>
+    </table>
+</div>
+<button type="button" (click)="goBack()">go back</button>
+    
+    
+    

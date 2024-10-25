@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <th>Apart ID</th>
+        <th>Floor</th>
+        <th>Rooms</th>
+        <th>Residents</th>
+        <th>Total Area</th>
+        <th>Usable Area</th>
+        <th>House ID </th>
+    </tr>
+    <tr *ngFor="let apart of aparts">
+        <td>{{apart.dzivNumurs}}</td>
+        <td>{{apart.stavs}}</td>
+        <td>{{apart.istabSkaits}}</td>
+        <td>{{apart.ieiedzSkaits}}</td>
+        <td>{{apart.platiba}}</td>
+        <td>{{apart.dzivPlatiba}}</td>
+        <td>{{apart.majaID}}</td>
+    </tr>
+</table>
+
+

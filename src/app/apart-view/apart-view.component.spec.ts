@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroesComponent } from './heroes.component';
+import { ApartViewComponent } from './apart-view.component';
 
-describe('HeroesComponent', () => {
-  let component: HeroesComponent;
-  let fixture: ComponentFixture<HeroesComponent>;
+describe('ApartViewComponent', () => {
+  let component: ApartViewComponent;
+  let fixture: ComponentFixture<ApartViewComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeroesComponent]
+      declarations: [ApartViewComponent]
     });
-    fixture = TestBed.createComponent(HeroesComponent);
+    fixture = TestBed.createComponent(ApartViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

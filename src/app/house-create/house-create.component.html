@@ -1,0 +1,14 @@
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="iela">Street: </label>
+          <input id="iela" formControlName="iela" placeholder="Street">
+          <label for="pilseta">City: </label>
+          <input id="pilseta" formControlName="pilseta" placeholder="City">
+          <label for="valsts">Country: </label>
+          <input id="valsts" formControlName="valsts" placeholder="Country">
+          <label for="pastIndeks">Post Index: </label>
+          <input id="pastIndeks" formControlName="pastIndeks" placeholder="Index">
+        </div>
+        <button type="submit" [disabled]="editForm.invalid">Add House</button>
+    </form>
+     

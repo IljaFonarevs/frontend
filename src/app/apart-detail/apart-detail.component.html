@@ -1,0 +1,28 @@
+<div *ngIf="houseAparts">
+<table>
+    <tr>
+        <th>Apart ID</th>
+        <th>Floor</th>
+        <th>Rooms</th>
+        <th>Residents</th>
+        <th>Total Area</th>
+        <th>Usable Area</th>
+        <th>House ID </th>
+        <th><a routerLink="/createApart" class="button">Create</a></th>
+    </tr>
+    <tr *ngFor="let apart of houseAparts">
+        <td><a routerLink="/apartResidents/{{apart.dzivNumurs}}">{{apart.dzivNumurs}}</a></td>
+        <td>{{apart.stavs}}</td>
+        <td>{{apart.istabSkaits}}</td>
+        <td>{{apart.ieiedzSkaits}}</td>
+        <td>{{apart.platiba}}</td>
+        <td>{{apart.dzivPlatiba}}</td>
+        <td>{{apart.majaID}}</td>
+        <td><a routerLink="/editApart/{{apart.dzivNumurs}}" class="button">Edit</a></td>
+        <td><button>Delete</button></td>
+    </tr>
+</table>
+</div>
+<button type="button" (click)="goBack()">go back</button>
+
+

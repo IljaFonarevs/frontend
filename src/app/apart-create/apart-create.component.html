@@ -1,0 +1,19 @@
+
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="stavs">Floor: </label>
+      <input id="stavs" type="number" formControlName="stavs" placeholder="0">
+      <label for="istabSkait">Rooms: </label>
+      <input id="istabSkait" type="number" formControlName="istabSkaits" placeholder="0">
+      <label for="ieiedzSkaits">Number of Residents: </label>
+      <input id="ieiedzSkaits" type="number" formControlName="ieiedzSkaits" placeholder="0">
+      <label for="platiba">Area: </label>
+      <input id="platiba" type="number" formControlName="platiba" placeholder="0">
+      <label for="dzivPlatiba">Usable Area: </label>
+      <input id="dzivPlatiba" type="number" formControlName="dzivPlatiba" placeholder="0">
+      <label for="majaID">Home ID: </label>
+      <input id="majaID" type="number" formControlName="majaID" placeholder="0">
+    </div>
+    <button type="submit" [disabled]="editForm.invalid">Create Apartment</button>
+</form>
+ 

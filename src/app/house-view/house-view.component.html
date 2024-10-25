@@ -1,0 +1,21 @@
+<table>
+    <tr>
+        <th>House ID</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Post Index</th>
+        <th><a routerLink="/createHouse" class="button">Create</a></th>
+        
+    </tr>
+    <tr *ngFor="let house of houses">
+        <td><a routerLink="/houseApart/{{house.majaNumurs}}">{{house.majaNumurs}}</a></td>
+        <td>{{house.iela}}</td>
+        <td>{{house.pilseta}}</td>
+        <td>{{house.valsts}}</td>
+        <td>{{house.pastIndeks}}</td>
+        <td><a routerLink="/editHouse/{{house.majaNumurs}}" class="button">Edit</a></td>
+        <td><button (click)="onDelete(house.majaNumurs)">Delete</button></td>
+    </tr>
+</table>
+
