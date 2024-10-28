@@ -1,24 +1,124 @@
 <div *ngIf="apartResidents">
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Personal Code</th>
-            <th>Apartment ID</th>
-            <th>Owner?</th>
-            <th>Date Of Birth</th>
-        </tr>
-        <tr *ngFor="let resident of apartResidents">
-            <td>{{resident.vards}}</td>
-            <td>{{resident.uzvards}}</td>
-            <td>{{resident.persKods}}</td>
-            <td>{{resident.dzivNumurs}}</td>
-            <td>{{resident.isOwner}}</td>
-            <td>{{resident.dzimDat}}</td>
-        </tr>
-    </table>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Personal Code</th>
+      <th>Apartment ID</th>
+      <th>Owner?</th>
+      <th>Date Of Birth</th>
+      <th><button (click)="createResident()">Create</button></th>
+      <td *ngIf="creatingResident" class="edit-form">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmitCreate()">
+          <div>
+            <label for="vards">Name: </label>
+            <input
+              id="vards"
+              type="text"
+              formControlName="vards"
+              placeholder="0"
+            />
+            <label for="uzvards">Surname: </label>
+            <input
+              id="uzvards"
+              type="text"
+              formControlName="uzvards"
+              placeholder="0"
+            />
+            <label for="dzivNumurs">Apartment Nr: </label>
+            <input
+              id="dzivNumurs"
+              type="number"
+              formControlName="dzivNumurs"
+              placeholder="0"
+            />
+            <label for="isOwner">Owner?: </label>
+            <input
+              id="isOwner"
+              type="checkbox"
+              formControlName="isOwner"
+              placeholder="0"
+            />
+            <label for="dzimDat">Date of Birth: </label>
+            <input
+              id="dzimDat"
+              type="date"
+              formControlName="dzimDat"
+              placeholder="0"
+            />
+          </div>
+          <button type="submit">Create Resident</button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </td>
+    </tr>
+    <tr *ngFor="let resident of apartResidents">
+      <td>{{ resident.vards }}</td>
+      <td>{{ resident.uzvards }}</td>
+      <td>{{ resident.persKods }}</td>
+      <td>{{ resident.dzivNumurs }}</td>
+      <td>{{ resident.isOwner }}</td>
+      <td>{{ resident.dzimDat }}</td>
+      <td>
+        <button
+          *ngIf="
+            !editingResident || editingResident.persKods !== resident.persKods
+          "
+          (click)="editResident(resident)"
+        >
+          Edit
+        </button>
+      </td>
+      <td
+        *ngIf="
+          editingResident && resident.persKods === editingResident.persKods
+        "
+        class="edit-form"
+      >
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+          <div>
+            <label for="vards">Name: </label>
+            <input
+              id="vards"
+              type="text"
+              formControlName="vards"
+              placeholder="0"
+            />
+            <label for="uzvards">Surname: </label>
+            <input
+              id="uzvards"
+              type="text"
+              formControlName="uzvards"
+              placeholder="0"
+            />
+            <label for="dzivNumurs">Apartment Nr: </label>
+            <input
+              id="dzivNumurs"
+              type="number"
+              formControlName="dzivNumurs"
+              placeholder="0"
+            />
+            <label for="isOwner">Owner?: </label>
+            <input
+              id="isOwner"
+              type="checkbox"
+              formControlName="isOwner"
+              placeholder="0"
+            />
+            <label for="dzimDat">Date of Birth: </label>
+            <input
+              id="dzimDat"
+              type="date"
+              formControlName="dzimDat"
+              placeholder="0"
+            />
+          </div>
+          <button type="submit">Save Changes</button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </td>
+      <td><button (click)="onDelete(resident.persKods)">Delete</button></td>
+    </tr>
+  </table>
 </div>
 <button type="button" (click)="goBack()">go back</button>
-    
-    
-    

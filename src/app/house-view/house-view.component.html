@@ -1,21 +1,114 @@
-<table>
+<div *ngIf="houses">
+  <table>
     <tr>
-        <th>House ID</th>
-        <th>Street</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Post Index</th>
-        <th><a routerLink="/createHouse" class="button">Create</a></th>
-        
+      <th>House ID</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Post Index</th>
+      <th><button (click)="createHouse()">Create</button></th>
+      <td *ngIf="creatingHouse">
+        <form
+          [formGroup]="editForm"
+          (ngSubmit)="onSubmitCreate()"
+          class="edit-form"
+        >
+          <label for="iela">Street: </label>
+          <input
+            id="iela"
+            type="text"
+            formControlName="iela"
+            placeholder="Street"
+          />
+
+          <label for="pilseta">City: </label>
+          <input
+            id="pilseta"
+            type="text"
+            formControlName="pilseta"
+            placeholder="City"
+          />
+
+          <label for="valsts">Country: </label>
+          <input
+            id="valsts"
+            type="text"
+            formControlName="valsts"
+            placeholder="Country"
+          />
+
+          <label for="pastIndeks">Post Index: </label>
+          <input
+            id="pastIndeks"
+            type="text"
+            formControlName="pastIndeks"
+            placeholder="Post Index"
+          />
+
+          <button type="submit">Create House</button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </td>
     </tr>
     <tr *ngFor="let house of houses">
-        <td><a routerLink="/houseApart/{{house.majaNumurs}}">{{house.majaNumurs}}</a></td>
-        <td>{{house.iela}}</td>
-        <td>{{house.pilseta}}</td>
-        <td>{{house.valsts}}</td>
-        <td>{{house.pastIndeks}}</td>
-        <td><a routerLink="/editHouse/{{house.majaNumurs}}" class="button">Edit</a></td>
-        <td><button (click)="onDelete(house.majaNumurs)">Delete</button></td>
-    </tr>
-</table>
+      <td>
+        <a routerLink="/houseApart/{{ house.majaNumurs }}">{{
+          house.majaNumurs
+        }}</a>
+      </td>
+      <td>{{ house.iela }}</td>
+      <td>{{ house.pilseta }}</td>
+      <td>{{ house.valsts }}</td>
+      <td>{{ house.pastIndeks }}</td>
+      <td>
+        <button
+          *ngIf="!editingHouse || editingHouse.majaNumurs !== house.majaNumurs"
+          (click)="editHouse(house)"
+        >
+          Edit
+        </button>
+      </td>
+      <td *ngIf="editingHouse && editingHouse.majaNumurs === house.majaNumurs">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="edit-form">
+          <label for="iela">Street: </label>
+          <input
+            id="iela"
+            type="text"
+            formControlName="iela"
+            placeholder="Street"
+          />
 
+          <label for="pilseta">City: </label>
+          <input
+            id="pilseta"
+            type="text"
+            formControlName="pilseta"
+            placeholder="City"
+          />
+
+          <label for="valsts">Country: </label>
+          <input
+            id="valsts"
+            type="text"
+            formControlName="valsts"
+            placeholder="Country"
+          />
+
+          <label for="pastIndeks">Post Index: </label>
+          <input
+            id="pastIndeks"
+            type="text"
+            formControlName="pastIndeks"
+            placeholder="Post Index"
+          />
+
+          <button type="submit">Save Changes</button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </td>
+      <td>
+        <button (click)="onDelete(house.majaNumurs)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

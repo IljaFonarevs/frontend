@@ -1,28 +1,137 @@
 <div *ngIf="houseAparts">
-<table>
+  <table>
     <tr>
-        <th>Apart ID</th>
-        <th>Floor</th>
-        <th>Rooms</th>
-        <th>Residents</th>
-        <th>Total Area</th>
-        <th>Usable Area</th>
-        <th>House ID </th>
-        <th><a routerLink="/createApart" class="button">Create</a></th>
+      <th>Apart ID</th>
+      <th>Floor</th>
+      <th>Rooms</th>
+      <th>Residents</th>
+      <th>Total Area</th>
+      <th>Usable Area</th>
+      <th>House ID</th>
+      <th><button (click)="createApart()">Create</button></th>
+      <td *ngIf="creatingApart" class="edit-form">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmitCreate()">
+          <div>
+            <label for="stavs">Floor: </label>
+            <input
+              id="stavs"
+              type="number"
+              formControlName="stavs"
+              placeholder="0"
+            />
+            <label for="istabSkait">Rooms: </label>
+            <input
+              id="istabSkait"
+              type="number"
+              formControlName="istabSkaits"
+              placeholder="0"
+            />
+            <label for="ieiedzSkaits">Number of Residents: </label>
+            <input
+              id="ieiedzSkaits"
+              type="number"
+              formControlName="ieiedzSkaits"
+              placeholder="0"
+            />
+            <label for="platiba">Area: </label>
+            <input
+              id="platiba"
+              type="number"
+              formControlName="platiba"
+              placeholder="0"
+            />
+            <label for="dzivPlatiba">Usable Area: </label>
+            <input
+              id="dzivPlatiba"
+              type="number"
+              formControlName="dzivPlatiba"
+              placeholder="0"
+            />
+            <label for="majaID">House ID: </label>
+            <input
+              id="majaID"
+              type="number"
+              formControlName="majaID"
+              placeholder="0"
+            />
+          </div>
+          <button type="submit" [disabled]="editForm.invalid">
+            Create Apartment
+          </button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </td>
     </tr>
     <tr *ngFor="let apart of houseAparts">
-        <td><a routerLink="/apartResidents/{{apart.dzivNumurs}}">{{apart.dzivNumurs}}</a></td>
-        <td>{{apart.stavs}}</td>
-        <td>{{apart.istabSkaits}}</td>
-        <td>{{apart.ieiedzSkaits}}</td>
-        <td>{{apart.platiba}}</td>
-        <td>{{apart.dzivPlatiba}}</td>
-        <td>{{apart.majaID}}</td>
-        <td><a routerLink="/editApart/{{apart.dzivNumurs}}" class="button">Edit</a></td>
-        <td><button>Delete</button></td>
+      <td>
+        <a routerLink="/apartResidents/{{ apart.dzivNumurs }}">{{
+          apart.dzivNumurs
+        }}</a>
+      </td>
+      <td>{{ apart.stavs }}</td>
+      <td>{{ apart.istabSkaits }}</td>
+      <td>{{ apart.ieiedzSkaits }}</td>
+      <td>{{ apart.platiba }}</td>
+      <td>{{ apart.dzivPlatiba }}</td>
+      <td>{{ apart.majaID }}</td>
+      <td><a class="button" (click)="editApart(apart)">Edit</a></td>
+      <td><button (click)="onDelete(apart.dzivNumurs)">Delete</button></td>
+      <td
+        *ngIf="editingApart && apart.dzivNumurs === editingApart.dzivNumurs"
+        class="edit-form"
+      >
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+          <div>
+            <label for="stavs">Floor: </label>
+            <input
+              id="stavs"
+              type="number"
+              formControlName="stavs"
+              placeholder="0"
+            />
+            <label for="istabSkait">Rooms: </label>
+            <input
+              id="istabSkait"
+              type="number"
+              formControlName="istabSkaits"
+              placeholder="0"
+            />
+            <label for="ieiedzSkaits">Number of Residents: </label>
+            <input
+              id="ieiedzSkaits"
+              type="number"
+              formControlName="ieiedzSkaits"
+              placeholder="0"
+            />
+            <label for="platiba">Area: </label>
+            <input
+              id="platiba"
+              type="number"
+              formControlName="platiba"
+              placeholder="0"
+            />
+            <label for="dzivPlatiba">Usable Area: </label>
+            <input
+              id="dzivPlatiba"
+              type="number"
+              formControlName="dzivPlatiba"
+              placeholder="0"
+            />
+            <label for="majaID">House ID: </label>
+            <input
+              id="majaID"
+              type="number"
+              formControlName="majaID"
+              placeholder="0"
+            />
+          </div>
+          <button type="submit" [disabled]="editForm.invalid">
+            Save Changes
+          </button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </td>
     </tr>
-</table>
+  </table>
 </div>
-<button type="button" (click)="goBack()">go back</button>
-
-
+<button type="button" (click)="goBack()">Go back</button>
